@@ -1,23 +1,22 @@
 package main;
 
-import org.apache.maven.settings.Server;
+import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import servlets.AllRequestServlet;
 
-import javax.servlet.ServletContext;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        AllRequestServlet allRequestsServlet = new AllRequestServlet();
+        AllRequestServlet allRequestsServlet = new AllRequestServlet(); //сервлет, обрабатывает все запросы
 
-        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
-        context.addServlet(new ServletHolder(allRequestsServlet), "/*");
+        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS); //хендлер
+        context.addServlet(new ServletHolder(allRequestsServlet), "/*");//кладем сервлет в хендлер; слушает всё
 
-        Server server = new Server(8080);
-        server.setHandler(context);
+        Server server = new Server(8080); //создание сервера(jetty) и сообщаем на каком порту ему работать
+        server.setHandler(context);//передаем в сервер хендлео
 
-        server.start();
-        server.join();
+        server.start();//запуск сервера
+        server.join(); //присоединение основного потока к jetty
     }
 }

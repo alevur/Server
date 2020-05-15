@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class AllRequestServlet extends HttpServlet {
 
+    @Override
+    //Обрабатывает get запросы по сервлету
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, Object> pageVariables = createPageVariablesMap(request);
         pageVariables.put("message", "");
@@ -22,6 +24,8 @@ public class AllRequestServlet extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_OK);
     }
 
+    @Override
+    //Обрабатывает post запросы по сервлету
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Map<String, Object> pageVariables = createPageVariablesMap(request);
 
